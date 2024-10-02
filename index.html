@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Sopa de Letras</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        #titulo {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        #sopa-de-letras {
+            text-align: center;
+        }
+
+        #sopa-de-letras td {
+            width: 30px;
+            height: 30px;
+            border: 1px solid black;
+            text-align: center;
+        }
+
+        #botones {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+	
+	<div id="titulo">
+		<h1>Sopa de Letras</h1>
+	</div>
+	
+	<div id="titulo">
+		<p>
+			Encuentra las palabras: 
+			<strong>PURACE</strong>,
+			<strong>COCONUCO</strong>,
+			<strong>MERCADO</strong>,
+			<strong>VOLCAN</strong>,
+			<strong>ORNITORRINCO</strong>,
+			<strong>KILOMETRO</strong>,
+			<strong>CERVEZA</strong>, 
+			<strong>CAPITULO</strong>,
+          
+			<strong>ORGANIZACION</strong>
+		</p>
+	</div>
+	
+
+    <table id="sopa-de-letras">
+        <tr>
+            <td>P</td><td>U</td><td>R</td><td>A</td><td>C</td><td>E</td><td>T</td><td>M</td><td>M</td><td>O</td>
+        </tr>                                                                                         
+        <tr>                                                                                          
+            <td>O</td><td>R</td><td>T</td><td>E</td><td>M</td><td>O</td><td>L</td><td>I</td><td>K</td><td>R</td>
+        </tr>                                                                                         
+        <tr>                                                                                          
+            <td>R</td><td>O</td><td>L</td><td>U</td><td>T</td><td>I</td><td>P</td><td>A</td><td>C</td><td>G</td>
+        </tr>                                                                                         
+		<tr>                                                                                          
+            <td>N</td><td>R</td><td>O</td><td>D</td><td>A</td><td>C</td><td>R</td><td>E</td><td>M</td><td>A</td>
+        </tr>                                                                                         
+		<tr>                                                                                          
+            <td>I</td><td>L</td><td>G</td><td>O</td><td>R</td><td>I</td><td>C</td><td>C</td><td>M</td><td>N</td>
+        </tr>                                                                                         
+		<tr>                                                                                          
+            <td>T</td><td>L</td><td>G</td><td>O</td><td>R</td><td>U</td><td>E</td><td>Z</td><td>O</td><td>I</td>
+        </tr>                                                                                         
+		<tr>                                                                                          
+            <td>O</td><td>C</td><td>A</td><td>L</td><td>A</td><td>R</td><td>O</td><td>Z</td><td>O</td><td>Z</td>
+        </tr>                                                                                         
+		<tr>                                                                                          
+            <td>R</td><td>L</td><td>G</td><td>O</td><td>V</td><td>I</td><td>T</td><td>B</td><td>A</td><td>A</td>
+        </tr>                                                                                         
+		<tr>                                                                                          
+            <td>R</td><td>L</td><td>C</td><td>E</td><td>R</td><td>I</td><td>T</td><td>A</td><td>C</td><td>C</td>
+        </tr>                                                                                         
+		<tr>                                                                                          
+            <td>I</td><td>O</td><td>Z</td><td>O</td><td>R</td><td>I</td><td>T</td><td>L</td><td>R</td><td>I</td>
+        </tr>                                                                                         
+		<tr>                                                                                          
+            <td>N</td><td>A</td><td>L</td><td>A</td><td>B</td><td>O</td><td>Z</td><td>O</td><td>E</td><td>O</td>
+        </tr>                                                                                         
+		<tr>                                                                                          
+            <td>C</td><td>V</td><td>O</td><td>L</td><td>C</td><td>A</td><td>N</td><td>C</td><td>M</td><td>N</td>
+        </tr>
+		<tr>                                                                                          
+            <td>O</td><td>C</td><td>U</td><td>N</td><td>O</td><td>C</td><td>O</td><td>C</td><td>M</td><td>N</td>
+        </tr>
+    </table>
+	
+	<div id="botones">
+		<button onclick="verificarPalabra()">Verificar Palabra</button>
+		<button onclick="reiniciar()">Reiniciar</button>
+	</div>
+    
+
+    <script>
+        var palabras = ['PURACE', 'COCONUCO', 'MERCADO', 'VOLCAN', 'ORNITORRINCO', 'KILOMETRO', 'CERVEZA', 'CAPITULO',  'ORGANIZACION'];
+        var letrasSeleccionadas = [];
+
+        var celdas = document.getElementById('sopa-de-letras').getElementsByTagName('td');
+        for (var i = 0; i < celdas.length; i++) {
+            celdas[i].addEventListener('click', function() {
+                if (letrasSeleccionadas.length < 100) {
+                    letrasSeleccionadas.push(this.textContent);
+                    this.style.backgroundColor = '#ff3333';
+                } else {
+                    alert('Palabra demasiado larga. Haz clic en "Reiniciar" para intentar de nuevo.');
+                }
+            });
+        }
+
+        function verificarPalabra() {
+            var palabraFormada = letrasSeleccionadas.join('');
+            if (palabras.includes(palabraFormada)) {
+                alert('¡Encontraste la palabra ' + palabraFormada + '!');
+                reiniciar();
+            } else {
+                alert('Palabra no encontrada. Inténtalo de nuevo.');
+                reiniciar();
+            }
+        }
+
+        function reiniciar() {
+            letrasSeleccionadas = [];
+            var celdas = document.getElementById('sopa-de-letras').getElementsByTagName('td');
+            for (var i = 0; i < celdas.length; i++) {
+                celdas[i].style.backgroundColor = 'transparent';
+            }
+        }
+    </script>
+</body>
+</html>
